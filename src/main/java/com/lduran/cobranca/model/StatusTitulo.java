@@ -2,8 +2,8 @@ package com.lduran.cobranca.model;
 
 public enum StatusTitulo
 {
-	Pendente("Pendente"),
-	Recebido("Recebido");
+	PENDENTE("Pendente"),
+	RECEBIDO("Recebido");
 
 	private String descricao;
 

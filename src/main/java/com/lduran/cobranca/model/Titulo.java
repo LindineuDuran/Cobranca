@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import lombok.*;
 
 @Entity
@@ -22,10 +25,12 @@ public class Titulo
 	private String descricao;
 
 	@EqualsAndHashCode.Exclude
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
-	private Date dataVEncimento;
+	private Date dataVencimento;
 
 	@EqualsAndHashCode.Exclude
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
 
 	@EqualsAndHashCode.Exclude

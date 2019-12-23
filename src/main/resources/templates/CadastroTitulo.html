@@ -13,7 +13,7 @@
 		</a>
 	</nav>
 
-	<form class="form-horizontal" method="POST" action="/titulos">
+	<form method="POST" action="/titulos">
 		<div class="card">
 			<div class="card-header">
 				<h5 class="card-title">Novo Título</h5>
@@ -41,8 +41,8 @@
 					<label for="status" class="col-sm-2 col-form-label">Status</label>
 					<div class="col-sm-2">
 						<select class="form-control" id="status" name="status">
-							<option>Pendente</option>
-							<option>Recebido</option>
+							<option value="PENDENTE">Pendente</option>
+							<option value="RECEBIDO">Recebido</option>
 						</select>
 					</div>
 				</div>
