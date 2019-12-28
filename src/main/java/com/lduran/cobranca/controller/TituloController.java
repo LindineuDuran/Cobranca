@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lduran.cobranca.model.StatusTitulo;
 import com.lduran.cobranca.model.Titulo;
@@ -31,19 +32,17 @@ public class TituloController
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView salvar(@Validated Titulo titulo, Errors errors)
+	public String salvar(@Validated Titulo titulo, Errors errors, RedirectAttributes attributes)
 	{
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
 		if (errors.hasErrors())
 		{
-			return mv;
+			return "CadastroTitulo";
 		}
 
 		titulos.save(titulo);
+		attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
 
-		mv.addObject("mensagem", "Título salvo com sucesso!");
-
-		return mv;
+		return "redirect:/titulos/novo";
 	}
 
 	@RequestMapping
