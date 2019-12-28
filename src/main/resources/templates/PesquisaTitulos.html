@@ -38,7 +38,7 @@
 								  th:classappend="${titulo.pendente ? 'badge-danger': 'badge badge-success'}">Sucess</span>
 						</td>
 						<td class="text-center">
-							<p>Icones</p>
+							<a th:href= "@{/titulos/{codigo}(codigo=${titulo.codigo})}" ><img src = "images/pencil.png" alt="edit" /></a>
 						</td>
 					</tr>
 					<tr>

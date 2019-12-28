@@ -1,7 +1,6 @@
 package com.lduran.cobranca.controller;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,13 +18,14 @@ import com.lduran.cobranca.repository.Titulos;
 @RequestMapping("/titulos")
 public class TituloController
 {
+	private String CADASTRO_VIEW = "CadastroTitulo";
 	@Autowired
 	private Titulos titulos;
 
 	@RequestMapping("/novo")
 	public ModelAndView novo()
 	{
-		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject(new Titulo());
 
 		return mv;
@@ -36,7 +36,7 @@ public class TituloController
 	{
 		if (errors.hasErrors())
 		{
-			return "CadastroTitulo";
+			return CADASTRO_VIEW;
 		}
 
 		titulos.save(titulo);
@@ -52,6 +52,14 @@ public class TituloController
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos", todosTitulos);
 
+		return mv;
+	}
+
+	@RequestMapping("{codigo}")
+	public ModelAndView edicao(@PathVariable("codigo") Optional<Titulo> titulo)
+	{
+		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
+		mv.addObject("titulo", titulo);
 		return mv;
 	}
 
