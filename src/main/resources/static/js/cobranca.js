@@ -14,3 +14,9 @@ $('#confirmacaoExclusaoModal').on('show.bs.modal', function(event)
 	
 	modal.find('.modal-body p').html('Tem certeza que deseja excluir o título <strong>' + descricaoTitulo + '</strong>?');
 });
+
+$(document).ready(function()
+{
+	$('[rel="tooltip"]').tooltip({container : 'body', trigger : 'hover', placement : "top"});
+	$('.js-currency').maskMoney({prefix: 'R$ ', decimal: ',', thousands: '.', allowZero: true});
+});
