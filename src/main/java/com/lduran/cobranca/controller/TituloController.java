@@ -3,7 +3,6 @@ package com.lduran.cobranca.controller;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
@@ -14,14 +13,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lduran.cobranca.model.StatusTitulo;
 import com.lduran.cobranca.model.Titulo;
 import com.lduran.cobranca.repository.Titulos;
+import com.lduran.cobranca.service.CadastroTituloService;
 
 @Controller
 @RequestMapping("/titulos")
 public class TituloController
 {
 	private String CADASTRO_VIEW = "CadastroTitulo";
+
 	@Autowired
 	private Titulos titulos;
+
+	@Autowired
+	private CadastroTituloService cadastroTituloService;
 
 	@RequestMapping("/novo")
 	public ModelAndView novo()
@@ -39,17 +43,16 @@ public class TituloController
 		{
 			return CADASTRO_VIEW;
 		}
-
 		try
 		{
-			titulos.save(titulo);
+			cadastroTituloService.salvar(titulo);
 			attributes.addFlashAttribute("mensagem", "Título salvo com sucesso!");
 
 			return "redirect:/titulos/novo";
 		}
-		catch (DataIntegrityViolationException e)
+		catch (IllegalArgumentException e)
 		{
-			errors.rejectValue("dataVencimento", null, "Formato de data inválido");
+			errors.rejectValue("dataVencimento", null, e.getMessage());
 			return CADASTRO_VIEW;
 		}
 	}
@@ -73,9 +76,10 @@ public class TituloController
 	}
 
 	@RequestMapping(value = "{codigo}", method = RequestMethod.POST)
-	public String excluir(@PathVariable Long codigo)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes)
 	{
-		titulos.deleteById(codigo);
+		cadastroTituloService.excluir(codigo);
+		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
 
 		return "redirect:/titulos";
 	}

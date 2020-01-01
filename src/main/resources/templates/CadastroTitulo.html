@@ -9,7 +9,8 @@
 <section layout:fragment="conteudo">
 	<form method="POST" action="/titulos" th:object="${titulo}">
 	
-		<div layout:insert="Mensagem"></div>
+		<div layout:insert="MensagemGeral"></div>
+		<div layout:insert="MensagemErro"></div>
 		
 		<div class="card">
 			<div class="card-header">
@@ -30,18 +31,17 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="dataVencimento" class="col-sm-2 col-form-label">Data de vencimento</label>
-					<div class="col-sm-2">
-						<input type="text" class="form-control" th:classappend="${#fields.hasErrors('dataVencimento')} ? 'is-invalid'"
-							   data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
-							   data-dateautoclose="true" data-date-today-highlight="true" data-date-orientation="top"
-							   id="dataVencimento" th:field="*{dataVencimento}">
-					</div>
-				</div>
-				<div class="form-group row">
 					<label for="valor" class="col-sm-2 col-form-label">Valor</label>
 					<div class="col-sm-2">
 						<input type="text" class="form-control js-currency" th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid'" id="valor" th:field="*{valor}">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="dataVencimento" class="col-sm-2 col-form-label">Data de vencimento</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" th:classappend="${#fields.hasErrors('dataVencimento')} ? 'is-invalid'"
+							   data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR" data-date-today-highlight="true"
+							   data-date-orientation="top" id="dataVencimento" th:field="*{dataVencimento}">
 					</div>
 				</div>
 				<div class="form-group row">
