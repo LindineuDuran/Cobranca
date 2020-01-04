@@ -19,4 +19,14 @@ $(document).ready(function()
 {
 	$('[rel="tooltip"]').tooltip({container : 'body', trigger : 'hover', placement : "top"});
 	$('.js-currency').maskMoney({decimal: ',', thousands: '.', allowZero: true});
+	
+	$('.js-atualizar-status').on('click', function(event)
+	{
+		event.preventDefault();
+		
+		var botaoReceber = $(event.currentTarget);
+		var urlReceber = botaoReceber.attr('href');
+		
+		alert('urlReceber: ' + urlReceber);
+	});
 });

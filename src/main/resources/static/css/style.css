@@ -23,3 +23,16 @@
 	float: left;
 	padding-top: 2px;
 }
+
+.btn-group-xs > .btn, .btn-xs
+{
+  padding: .25rem .4rem;
+  font-size: .875rem;
+  line-height: .5;
+  border-radius: .2rem;
+}
+
+.cmd
+{
+	width: 115px;
+}

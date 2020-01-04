@@ -26,14 +26,15 @@
 				<div class="form-group row">
 					<label for="descricao" class="col-sm-2 col-form-label">Descrição</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'" id="descricao"
-							th:field="*{descricao}">
+						<input type="text" class="form-control" th:classappend="${#fields.hasErrors('descricao')} ? 'is-invalid'"
+							   id="descricao" th:field="*{descricao}">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="valor" class="col-sm-2 col-form-label">Valor</label>
 					<div class="col-sm-2">
-						<input type="text" class="form-control js-currency" th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid'" id="valor" th:field="*{valor}">
+						<input type="text" class="form-control js-currency" th:classappend="${#fields.hasErrors('valor')} ? 'is-invalid'"
+							   id="valor" th:field="*{valor}">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -49,7 +50,7 @@
 					<div class="col-sm-2">
 						<select class="form-control" id="status" name="status">
 							<option th:each="status : ${todosStatusTitulo}" th:value="${status}" th:text="${status.descricao}"></option>
-						</select>
+                    	</select>
 					</div>
 				</div>
 				<div class="form-group row">
