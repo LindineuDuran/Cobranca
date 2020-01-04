@@ -27,6 +27,23 @@ $(document).ready(function()
 		var botaoReceber = $(event.currentTarget);
 		var urlReceber = botaoReceber.attr('href');
 		
-		alert('urlReceber: ' + urlReceber);
+		var response = $.ajax(
+		{
+			url: urlReceber,
+			type: 'PUT'
+		});
+		
+		response.done(function(e)
+		{
+			var codigoTitulo = botaoReceber.data('codigo');
+			$('[data-role=' + codigoTitulo + ']').html('<span class="badge badge-success" th:text="${titulo.status.descricao}">' + e + '</span>');
+			botaoReceber.hide();
+		});
+		
+		response.fail(function(e)
+		{
+			console.log(e);
+			alert('Erro ao receber cobrança!');
+		});
 	});
 });

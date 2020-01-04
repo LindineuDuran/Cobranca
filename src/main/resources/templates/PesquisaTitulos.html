@@ -34,7 +34,7 @@
 						<td th:text="${titulo.descricao}"></td>
 						<td class="text-center" th:text="${{titulo.dataVencimento}}"></td>
 						<td class="text-right" th:text="|R$ ${{titulo.valor}}|"></td>
-						<td class="text-center">
+						<td class="text-center" th:attr="data-role=${titulo.codigo}">
 							<span class="badge"
 								  th:text="${titulo.status.descricao}"
 								  th:classappend="${titulo.pendente ? 'badge-danger': 'badge badge-success'}">Sucess</span>
@@ -51,6 +51,7 @@
 						    </a>
 							<a class="btn btn-link btn-xs js-atualizar-status" rel="tooltip" data-placement="top"
 							   title="Receber" th:if="${titulo.pendente}"
+							    th:attr="data-codigo=${titulo.codigo}"
 							   th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
 							   	<img src = "images/check-2x.png" alt="rec" />
 						    </a>

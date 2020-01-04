@@ -84,6 +84,12 @@ public class TituloController
 		return "redirect:/titulos";
 	}
 
+	@RequestMapping(value = "/{codigo}/receber", method = RequestMethod.PUT)
+	public @ResponseBody String receber(@PathVariable Long codigo)
+	{
+		return cadastroTituloService.receber(codigo);
+	}
+
 	@ModelAttribute("todosStatusTitulo")
 	public List<StatusTitulo> todosStatusTitulo()
 	{
