@@ -1,5 +1,6 @@
 package com.lduran.cobranca.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.lduran.cobranca.model.StatusTitulo;
 import com.lduran.cobranca.model.Titulo;
 import com.lduran.cobranca.repository.Titulos;
+import com.lduran.cobranca.repository.filter.TituloFilter;
 
 @Service
 public class CadastroTituloService
@@ -40,5 +42,12 @@ public class CadastroTituloService
 		titulos.save(titulo.get());
 
 		return StatusTitulo.RECEBIDO.getDescricao();
+	}
+
+	public List<Titulo> filtrar(TituloFilter filtro)
+	{
+		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
+
+		return titulos.findByDescricaoContaining(descricao);
 	}
 }

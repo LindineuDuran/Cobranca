@@ -17,12 +17,13 @@
 			</div>
 		</div>
 		<div class="card-body">
-			<form method="GET">
+			<form method="GET" action="/titulos" th:object="${filtro}">
 				<div class="main">
 					  <div class="input-group">
-					    <input type="text" class="form-control" placeholder="Qual título vc está procurando?" autofocus="autofocus">
+					    <input type="text" class="form-control" placeholder="Qual título vc está procurando?"
+							   autofocus="autofocus" th:field="*{descricao}">
 					    <div class="input-group-append">
-					      <button class="btn btn-secondary" type="button">
+					      <button class="btn btn-secondary" type="submit">
 					        <img src = "images/magnifying-glass-2x.png" alt="rec" />
 					      </button>
 					    </div>

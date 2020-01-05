@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lduran.cobranca.model.StatusTitulo;
 import com.lduran.cobranca.model.Titulo;
-import com.lduran.cobranca.repository.Titulos;
+import com.lduran.cobranca.repository.filter.TituloFilter;
 import com.lduran.cobranca.service.CadastroTituloService;
 
 @Controller
@@ -20,9 +20,6 @@ import com.lduran.cobranca.service.CadastroTituloService;
 public class TituloController
 {
 	private String CADASTRO_VIEW = "CadastroTitulo";
-
-	@Autowired
-	private Titulos titulos;
 
 	@Autowired
 	private CadastroTituloService cadastroTituloService;
@@ -58,9 +55,9 @@ public class TituloController
 	}
 
 	@RequestMapping
-	public ModelAndView pesquisar()
+	public ModelAndView pesquisar(@ModelAttribute("filtro") TituloFilter filtro)
 	{
-		List<Titulo> todosTitulos = titulos.findAll();
+		List<Titulo> todosTitulos = cadastroTituloService.filtrar(filtro);
 		ModelAndView mv = new ModelAndView("PesquisaTitulos");
 		mv.addObject("titulos", todosTitulos);
 
